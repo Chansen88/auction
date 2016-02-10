@@ -39,7 +39,6 @@ System.register(['angular2/core', './navbar.component', './auctions.component', 
                 return AppComponent;
             })();
             exports_1("AppComponent", AppComponent);
-            s;
         }
     }
 });

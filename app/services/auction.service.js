@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1) {
+System.register(['angular2/core', './mock-auctions'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,28 +8,31 @@ System.register(['angular2/core'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
-    var AuctionsComponent;
+    var core_1, mock_auctions_1;
+    var AuctionService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (mock_auctions_1_1) {
+                mock_auctions_1 = mock_auctions_1_1;
             }],
         execute: function() {
-            AuctionsComponent = (function () {
-                function AuctionsComponent() {
+            AuctionService = (function () {
+                function AuctionService() {
                 }
-                AuctionsComponent = __decorate([
-                    core_1.Component({
-                        selector: 'auctions',
-                        template: '<h1>this is my auctions</h1>',
-                    }), 
+                AuctionService.prototype.getAuctions = function () {
+                    return Promise.resolve(mock_auctions_1.AUCTIONS);
+                };
+                AuctionService = __decorate([
+                    core_1.Injectable(), 
                     __metadata('design:paramtypes', [])
-                ], AuctionsComponent);
-                return AuctionsComponent;
+                ], AuctionService);
+                return AuctionService;
             })();
-            exports_1("AuctionsComponent", AuctionsComponent);
+            exports_1("AuctionService", AuctionService);
         }
     }
 });
-//# sourceMappingURL=auctions.component.js.map
+//# sourceMappingURL=auction.service.js.map

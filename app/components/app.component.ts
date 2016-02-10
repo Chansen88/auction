@@ -12,4 +12,4 @@ import {AuctionComponent} from './auction.component';
     directives: [NavBarComponent, AuctionsComponent, AuctionComponent],
 })
 
-export class AppComponent { }s 
+export class AppComponent { }
