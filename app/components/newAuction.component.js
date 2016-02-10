@@ -32,8 +32,8 @@ System.register(['angular2/core', '../services/auction.service'], function(expor
                 };
                 AuctionComponent = __decorate([
                     core_1.Component({
-                        selector: 'auction',
-                        template: "<div *ngFor=\"#auction of auctions\">\n                <span>{{auction.name}}</span>\n                <span>{{auction.price}}</span>\n                <span *ngIf=\"auction.open\">\n                  <input type=\"number\" value=\"{{auction.price + 5}}\"/>\n                  <button> BID </button>\n                </span>\n              </div>",
+                        selector: 'new-auction',
+                        template: "<div *ngFor=\"#auction of auctions\">\n                <input type=\"string\">{{auction.name}}/>\n                <input type=\"number\">{{auction.price}}/>\n              </div>",
                         providers: [auction_service_1.AuctionService]
                     }), 
                     __metadata('design:paramtypes', [auction_service_1.AuctionService])
@@ -44,4 +44,4 @@ System.register(['angular2/core', '../services/auction.service'], function(expor
         }
     }
 });
-//# sourceMappingURL=auction.component.js.map
+//# sourceMappingURL=newAuction.component.js.map

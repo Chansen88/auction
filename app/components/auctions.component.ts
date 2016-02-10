@@ -4,12 +4,29 @@ import {AuctionService} from '../services/auction.service';
 
 @Component({
     selector: 'auctions',
-    template: `<ul class="heroes">
-                <li *ngFor="#auction of auctions">
-                  <span class="badge">{{auction.id}}</span>
-                  <span> {{auction.name}} </span>
-                </li>
-              </ul>`,
+    template: `<table class="table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Open</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Open</th>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr *ngFor="#auction of auctions">
+          <td>{{auction.name}}</td>
+          <td>{{auction.price}}</td>
+          <td>{{auction.open}}</td>
+        </tr>
+      </tbody>
+    </table>`,
     providers: [AuctionService]
 })
 export class AuctionsComponent implements OnInit{
@@ -18,10 +35,6 @@ export class AuctionsComponent implements OnInit{
   constructor(private _auctionService: AuctionService) {}
 
   getAuctions() {
-    // this.auctions = [
-    //     {"id": 0, "name": "truck", "price": 1000, "open": true},
-    //     {"id": 1, "name": "car", "price": 800, "open": true}
-    // ];
     this._auctionService.getAuctions().then(auctions => this.auctions = auctions);
   }
 

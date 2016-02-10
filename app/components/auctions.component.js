@@ -25,10 +25,6 @@ System.register(['angular2/core', '../services/auction.service'], function(expor
                 }
                 AuctionsComponent.prototype.getAuctions = function () {
                     var _this = this;
-                    // this.auctions = [
-                    //     {"id": 0, "name": "truck", "price": 1000, "open": true},
-                    //     {"id": 1, "name": "car", "price": 800, "open": true}
-                    // ];
                     this._auctionService.getAuctions().then(function (auctions) { return _this.auctions = auctions; });
                 };
                 AuctionsComponent.prototype.ngOnInit = function () {
@@ -37,7 +33,7 @@ System.register(['angular2/core', '../services/auction.service'], function(expor
                 AuctionsComponent = __decorate([
                     core_1.Component({
                         selector: 'auctions',
-                        template: "<ul class=\"heroes\">\n                <li *ngFor=\"#auction of auctions\">\n                  <span class=\"badge\">{{auction.id}}</span>\n                  <span> {{auction.name}} </span>\n                </li>\n              </ul>",
+                        template: "<table class=\"table\">\n      <thead>\n        <tr>\n          <th>Item</th>\n          <th>Price</th>\n          <th>Open</th>\n        </tr>\n      </thead>\n      <tfoot>\n        <tr>\n          <th>Item</th>\n          <th>Price</th>\n          <th>Open</th>\n        </tr>\n      </tfoot>\n      <tbody>\n        <tr *ngFor=\"#auction of auctions\">\n          <td>{{auction.name}}</td>\n          <td>{{auction.price}}</td>\n          <td>{{auction.open}}</td>\n        </tr>\n      </tbody>\n    </table>",
                         providers: [auction_service_1.AuctionService]
                     }), 
                     __metadata('design:paramtypes', [auction_service_1.AuctionService])

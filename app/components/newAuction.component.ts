@@ -3,14 +3,10 @@ import {Auction} from '../interfaces/auction';
 import {AuctionService} from '../services/auction.service';
 
 @Component({
-    selector: 'auction',
+    selector: 'new-auction',
     template: `<div *ngFor="#auction of auctions">
-                <span>{{auction.name}}</span>
-                <span>{{auction.price}}</span>
-                <span *ngIf="auction.open">
-                  <input type="number" value="{{auction.price + 5}}"/>
-                  <button> BID </button>
-                </span>
+                <input type="string">{{auction.name}}/>
+                <input type="number">{{auction.price}}/>
               </div>`,
     providers: [AuctionService]
 })
