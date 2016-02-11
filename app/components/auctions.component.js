@@ -24,16 +24,9 @@ System.register(['angular2/core', '../services/auction.service', './firebasepipe
         execute: function() {
             AuctionsComponent = (function () {
                 function AuctionsComponent(_AuctionService) {
-                    var _this = this;
                     this._AuctionService = _AuctionService;
                     this.firebaseUrl = this._AuctionService.firebaseUrl;
                     this.auctionsRef = this._AuctionService.auctionsRef;
-                    this.auctionsRef.onAuth(function (user) {
-                        if (user) {
-                            _this.authData = user;
-                            _this.isLoggedIn = true;
-                        }
-                    });
                 }
                 AuctionsComponent.prototype.authWithTwitter = function () {
                     this.auctionsRef.authWithOAuthPopup("twitter", function (error) {
@@ -45,7 +38,7 @@ System.register(['angular2/core', '../services/auction.service', './firebasepipe
                 AuctionsComponent = __decorate([
                     core_1.Component({
                         selector: 'auctions',
-                        template: "<button [hidden]=\"isLoggedIn\" class=\"twitter\" (click)=\"authWithTwitter()\">Sign in with Twitter</button>\n    <table class=\"table\">\n      <thead>\n        <tr>\n          <th>Item</th>\n          <th>Price</th>\n          <th>Open</th>\n        </tr>\n      </thead>\n      <tfoot>\n        <tr>\n          <th>Item</th>\n          <th>Price</th>\n          <th>Open</th>\n        </tr>\n      </tfoot>\n      <tbody>\n        <tr *ngFor=\"#auction of firebaseUrl | firebaseevent:'value'\">\n          <td>{{auction.name}}</td>\n          <td>{{auction.price}}</td>\n          <td>{{auction.open}}</td>\n        </tr>\n      </tbody>\n    </table>",
+                        template: "<table class=\"table\">\n                <thead>\n                  <tr>\n                    <th>Item</th>\n                    <th>Price</th>\n                    <th>Open</th>\n                  </tr>\n                </thead>\n                <tfoot>\n                  <tr>\n                    <th>Item</th>\n                    <th>Price</th>\n                    <th>Open</th>\n                  </tr>\n                </tfoot>\n                <tbody>\n                  <tr *ngFor=\"#auction of firebaseUrl | firebaseevent:'value'\">\n                    <td>{{auction.name}}</td>\n                    <td>{{auction.price}}</td>\n                    <td>{{auction.open}}</td>\n                  </tr>\n                </tbody>\n              </table>",
                         providers: [auction_service_1.AuctionService],
                         pipes: [firebasepipe_1.FirebaseEventPipe]
                     }), 
