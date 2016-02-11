@@ -22,7 +22,7 @@ System.register(['angular2/core'], function(exports_1) {
                 NavBarComponent = __decorate([
                     core_1.Component({
                         selector: 'nav-bar',
-                        template: "<nav class=\"navbar\">\n                <p class=\"navbar-item is-centered\">\n                  <a class=\"link is-info\" href=\"#\">Home</a>\n                </p>\n                <p class=\"navbar-item is-centered\">\n                <img src=\"/images/bulma.png\" alt=\"\" style=\"height: 33px;\">\n                </p>\n                <p class=\"navbar-item is-centered\">\n                  <a class=\"link is-info\" href=\"#\">Account</a>\n                </p>\n              </nav>",
+                        template: "<nav class=\"navbar\">\n                <p class=\"navbar-item is-centered\">\n                  <a class=\"link is-info\" href=\"#\">Home</a>\n                </p>\n                <p class=\"navbar-item is-centered\">\n                <img src=\"/images/logo.png\" alt=\"\" style=\"height: 33px;\">\n                </p>\n                <p class=\"navbar-item is-centered\">\n                  <a class=\"link is-info\" href=\"#\">Account</a>\n                </p>\n              </nav>",
                     }), 
                     __metadata('design:paramtypes', [])
                 ], NavBarComponent);
