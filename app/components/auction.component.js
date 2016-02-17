@@ -9,7 +9,7 @@ System.register(['angular2/core', '../services/auction.service', './firebasepipe
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, auction_service_1, firebasepipe_1;
-    var AuctionsComponent;
+    var AuctionComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -22,53 +22,30 @@ System.register(['angular2/core', '../services/auction.service', './firebasepipe
                 firebasepipe_1 = firebasepipe_1_1;
             }],
         execute: function() {
-            AuctionsComponent = (function () {
-                function AuctionsComponent(_AuctionService) {
-                    var _this = this;
+            AuctionComponent = (function () {
+                function AuctionComponent(_AuctionService) {
                     this._AuctionService = _AuctionService;
-                    this.newBid = {};
+                    this.auction = Object;
                     this.firebaseUrl = this._AuctionService.firebaseUrl;
                     this.auctionsRef = this._AuctionService.auctionsRef;
-                    this.currentAuction = this._AuctionService.activeAuctionData;
-                    this.auctionsRef.onAuth(function (user) {
-                        if (user) {
-                            _this.authData = user;
-                            _this.isLoggedIn = true;
-                        }
-                    });
+                    this.auction = this._AuctionService.activeAuctionData;
                 }
-                AuctionsComponent.prototype.authWithTwitter = function () {
-                    this.auctionsRef.authWithOAuthPopup("twitter", function (error) {
-                        if (error) {
-                            console.log(error);
-                        }
-                    });
+                AuctionComponent.prototype.testFunction = function (data) {
+                    console.log(data);
                 };
-                AuctionsComponent.prototype.submitBid = function () {
-                    console.log(this.newBid);
-                    this.newBid['user'] = this.authData.twitter.username;
-                    this._AuctionService.addBid(this.newBid, this.currentAuction.id);
-                    this.newBid = {};
-                    this.currentAuction = null;
-                };
-                AuctionsComponent.prototype.moreInfo = function (id) {
-                    this.newBid = {};
-                    this._AuctionService.getAuction(id);
-                    console.log(this.currentAuction);
-                };
-                AuctionsComponent = __decorate([
+                AuctionComponent = __decorate([
                     core_1.Component({
-                        selector: 'auctions',
-                        templateUrl: './partials/auctions.html',
+                        selector: 'auction',
+                        template: "<h1>sdfsdsdsdf</h1>\n              <br>\n              <div *ngIf=\"auction\">\n              <h1>{{auction}}</h1>\n              <ul>\n                <li>\n                  {{auction.description}}\n                </li>\n                <li>\n                  <h4>\n                    {{auction.price}}\n                  </h4>\n                </li>\n                <li>\n                hello\n                </li>\n                <li>\n                  <form>\n                      <label for=\"amount\">new Bid</label>\n                      <input id=\"amount\" type=\"text\" class=\"form-control\" value='{{auction.price + 10}}' required>\n                    <button type=\"submit\" class=\"btn btn-default\">Place Bid</button>\n                  </form>\n                </li>\n              </ul>\n              </div>\n    ",
                         providers: [auction_service_1.AuctionService],
                         pipes: [firebasepipe_1.FirebaseEventPipe]
                     }), 
                     __metadata('design:paramtypes', [auction_service_1.AuctionService])
-                ], AuctionsComponent);
-                return AuctionsComponent;
+                ], AuctionComponent);
+                return AuctionComponent;
             })();
-            exports_1("AuctionsComponent", AuctionsComponent);
+            exports_1("AuctionComponent", AuctionComponent);
         }
     }
 });
-//# sourceMappingURL=auctions.component.js.map
+//# sourceMappingURL=auction.component.js.map

@@ -21,8 +21,6 @@ System.register(['angular2/core'], function(exports_1) {
                     var _this = this;
                     this.firebaseUrl = "https://popping-heat-8485.firebaseio.com/auctions";
                     this.auctionsRef = new Firebase(this.firebaseUrl);
-                    console.log('%%%%%%%%%%%%%%%%%%%%%%');
-                    console.log(this.auctionsRef);
                     this.auctionsRef.onAuth(function (user) {
                         if (user) {
                             _this.authData = user;
@@ -31,7 +29,34 @@ System.register(['angular2/core'], function(exports_1) {
                     });
                 }
                 AuctionService.prototype.getAuctions = function () {
-                    return Promise.resolve(this.auctionsRef);
+                    var _this = this;
+                    this.auctionsRef.on('child_changed', function (snapshot) {
+                        _this.auctionData = snapshot.val();
+                    });
+                    return this.auctionData;
+                };
+                AuctionService.prototype.newAuction = function (auction) {
+                    auction['startPrice'] = auction.price;
+                    auction['owner'] = this.authData.twitter.username;
+                    auction['open'] = true;
+                    auction['bids'] = [{ 'bid': auction.price, 'user': auction.owner }];
+                    var newPostRef = this.auctionsRef.push(auction);
+                    auction['id'] = newPostRef.key();
+                    this.auctionsRef.child(newPostRef.key()).set(auction);
+                };
+                AuctionService.prototype.addBid = function (data, id) {
+                    var auctionData = this.getAuction(id);
+                    if (data.bid > auctionData.bids[0].bid) {
+                        auctionData.bids.unshift(data);
+                        auctionData.price = data.bid;
+                        this.auctionsRef.child(id).set(auctionData);
+                    }
+                };
+                AuctionService.prototype.getAuction = function (id) {
+                    var _this = this;
+                    this.auctionsRef.child(id).on('value', function (snapshot) {
+                        _this.activeAuctionData = snapshot.val();
+                    });
                 };
                 AuctionService = __decorate([
                     core_1.Injectable(), 

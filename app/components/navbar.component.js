@@ -26,6 +26,8 @@ System.register(['angular2/core', '../services/auction.service', './firebasepipe
                 function NavBarComponent(_AuctionService) {
                     var _this = this;
                     this._AuctionService = _AuctionService;
+                    this.createForm = false;
+                    this.vm = {};
                     this.auctionsRef = this._AuctionService.auctionsRef;
                     this.auctionsRef.onAuth(function (user) {
                         if (user) {
@@ -41,10 +43,15 @@ System.register(['angular2/core', '../services/auction.service', './firebasepipe
                         }
                     });
                 };
+                NavBarComponent.prototype.createItem = function () {
+                    this._AuctionService.newAuction(this.vm);
+                    this.createForm = false;
+                    this.vm = {};
+                };
                 NavBarComponent = __decorate([
                     core_1.Component({
                         selector: 'nav-bar',
-                        template: "<nav class=\"navbar\">\n                <p class=\"navbar-item is-centered\">\n                  <a class=\"link is-info\" href=\"#\">Home</a>\n                </p>\n                <p class=\"navbar-item is-centered\">\n                <img src=\"/images/logo.png\" alt=\"\" style=\"height: 33px;\">\n                </p>\n                <p class=\"navbar-item is-centered\">\n                  <a class=\"link is-info\" [hidden]=\"!isLoggedIn\" href=\"#\">Account</a>\n                  <a class=\"link is-info\" [hidden]=\"isLoggedIn\" (click)=\"authWithTwitter()\">Sign in with Twitter</a>\n                </p>\n              </nav>",
+                        template: "<nav class=\"navbar\">\n                <p class=\"navbar-item is-centered\">\n                  <a class=\"link is-info\" href=\"#\">Home</a>\n                </p>\n                <p class=\"navbar-item is-centered\">\n                <img src=\"/images/logo.png\" alt=\"\" style=\"height: 33px;\">\n                </p>\n                <p class=\"navbar-item is-centered\">\n                  <a class=\"link is-info\" [hidden]=\"!isLoggedIn\" (click)=\"createForm=true\">New Item</a>\n                  <a class=\"link is-info\" [hidden]=\"isLoggedIn\" (click)=\"authWithTwitter()\">Sign in with Twitter</a>\n                </p>\n              </nav>\n\n              <div class=\"container\" [hidden]=\"!createForm\">\n                <div class=\"column is-4\">\n                <form  #f=\"ngForm\" (ngSubmit)=\"createItem()\">\n                  <p class=\"control\">\n                    <input class=\"input\" type=\"text\" placeholder=\"Item Name\" [(ngModel)]=\"vm.name\" required>\n                  </p>\n                  <p class=\"control\">\n                    <input class=\"input\" type=\"string\" placeholder=\"Image Url\" [(ngModel)]=\"vm.imageUrl\">\n                  </p>\n                  <p class=\"control\">\n                    <input class=\"input\" type=\"number\" placeholder=\"Item Price\" [(ngModel)]=\"vm.price\" required>\n                  </p>\n                  <p class=\"control\">\n                    <textarea class=\"textarea\" placeholder=\"Description\" [(ngModel)]=\"vm.description\" required></textarea>\n                  </p>\n                  <p class=\"control\">\n                    <button class=\"button is-primary\" [disabled]=\"!f.valid\">Submit</button>\n                    <button class=\"button\" (click)=\"createForm=false\">Cancel</button>\n                  </p>\n                  </form>\n                </div>\n              </div>\n              ",
                         providers: [auction_service_1.AuctionService],
                         pipes: [firebasepipe_1.FirebaseEventPipe]
                     }), 

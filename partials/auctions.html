@@ -1,0 +1,54 @@
+<br>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Open</th>
+        <th>Info</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Open</th>
+        <th>Info</th>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr *ngFor="#auction of firebaseUrl | firebaseevent:'child_added'">
+        <td>{{auction.name}}</td>
+        <td>{{auction.price}}</td>
+        <td>{{auction.open}}</td>
+        <td>
+          <a class="link is-info" (click)="moreInfo(auction.id)">More</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container" *ngIf="currentAuction">
+  <div class="content">
+    <img *ngIf="currentAuction.imageUrl" src="{{currentAuction.imageUrl}}" alt="{{currentAuction.name}}"/>
+    <h1>{{currentAuction.name}}</h1>
+    <p>{{currentAuction.description}}</p>
+    <p>Current Price:
+      {{currentAuction.price}}
+    </p>
+    <h2>Place Bid</h2>
+    <form #f="ngForm" (ngSubmit)="submitBid()">
+      <div class="control columns">
+        <input class=" column input is-3" type="number" placeholder="{{currentAuction.price * 1.1}}" [(ngModel)]="newBid.bid" required>
+        <button class="column is-2 button is-primary" [disabled]="!f.valid">Place Bid</button>
+      </div>
+    </form>
+    <ul *ngFor="#bid of currentAuction.bids">
+      <li>{{bid.bid}}
+        :
+        {{bid.user}}</li>
+    </ul>
+  </div>
+</div>

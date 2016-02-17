@@ -1,4 +1,4 @@
-System.register(['angular2/core', './navbar.component', './auctions.component'], function(exports_1) {
+System.register(['angular2/core', './navbar.component', './auctions.component', './auction.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './navbar.component', './auctions.component'],
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, navbar_component_1, auctions_component_1;
+    var core_1, navbar_component_1, auctions_component_1, auction_component_1;
     var AppComponent;
     return {
         setters:[
@@ -20,6 +20,9 @@ System.register(['angular2/core', './navbar.component', './auctions.component'],
             },
             function (auctions_component_1_1) {
                 auctions_component_1 = auctions_component_1_1;
+            },
+            function (auction_component_1_1) {
+                auction_component_1 = auction_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -28,8 +31,8 @@ System.register(['angular2/core', './navbar.component', './auctions.component'],
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "<nav-bar></nav-bar>\n              <auctions></auctions>",
-                        directives: [navbar_component_1.NavBarComponent, auctions_component_1.AuctionsComponent],
+                        template: "<nav-bar></nav-bar>\n              <auctions></auctions>\n              <auction></auction>",
+                        directives: [navbar_component_1.NavBarComponent, auctions_component_1.AuctionsComponent, auction_component_1.AuctionComponent],
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
